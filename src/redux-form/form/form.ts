@@ -1,5 +1,7 @@
 import {
     ActionCreatorWithPayload,
+    AnyAction,
+    CombinedState,
     combineReducers,
     createSlice,
     Draft,
@@ -14,6 +16,8 @@ import {
     FormValue,
     FormReducers,
     FormErrors,
+    Form,
+    FormControlType,
 } from "./types";
 
 const createFormControl = function <T, FormName extends string, ControlName extends string>({
@@ -39,7 +43,7 @@ const createFormControl = function <T, FormName extends string, ControlName exte
 export const createForm = function <
     T extends Record<string, ControlConfig<any>>,
     K extends keyof T = keyof T,
->(name: string, config: T) {
+>(name: string, config: T): Form<T, K> {
     const controls = {} as Record<K, FormControlFromConfig<T[K]>>;
     let controlReducers = {} as FormReducers<T>;
 
@@ -83,7 +87,12 @@ export const createForm = function <
         getValue,
         getErrors,
         register: () => ({
-            [name]: formReducer,
+            [name]: formReducer as Reducer<
+                CombinedState<
+                    Record<K, ControlState<FormControlType<FormControlFromConfig<T[K]>>>>
+                >,
+                AnyAction
+            >,
         }),
     };
 };
