@@ -17,7 +17,7 @@ export const createControl = function <K extends string, T>(
     const control: ControlState<T> = {
         value,
         dirty: false,
-        errors: validateOnChange ? validate(value) : [],
+        errors: [],
     };
 
     const slice = createSlice({

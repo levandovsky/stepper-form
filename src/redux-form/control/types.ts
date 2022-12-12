@@ -4,7 +4,7 @@ import {
     AnyAction,
     Reducer,
 } from "@reduxjs/toolkit";
-import { Validator } from "../validators";
+import { Validator } from "@form/validators/validators";
 
 export type ControlState<T> = {
     value: T;
@@ -16,13 +16,13 @@ export type ControlActions<T> = {
     setValue: ActionCreatorWithPayload<T>;
     reset: ActionCreatorWithoutPayload;
     validate: ActionCreatorWithoutPayload;
-}
+};
 
 export type ControlSelectors<T> = {
     getValue: (state: any) => T;
     getErrors: (state: any) => string[];
     getDirty: (state: any) => boolean;
-}
+};
 
 export type Control<Type, Name extends string> = {
     actions: ControlActions<Type>;
