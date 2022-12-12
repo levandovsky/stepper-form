@@ -1,8 +1,11 @@
-/// <reference types="vitest" />
-
-import { defineConfig } from "vite";
+import { UserConfigExport } from "vite";
+import { UserConfig } from "vitest";
 import react from "@vitejs/plugin-react";
 import tsconfig from "./tsconfig.json";
+
+type ViteConfig = UserConfigExport & {
+    test: UserConfig;
+};
 
 const alias = Object.entries(tsconfig.compilerOptions.paths).reduce((acc, [key, value]) => {
     const alias = key.replace("/*", "");
@@ -14,8 +17,11 @@ const alias = Object.entries(tsconfig.compilerOptions.paths).reduce((acc, [key, 
     };
 }, {});
 
-export default defineConfig({
+const config: ViteConfig = {
     plugins: [react()],
+    optimizeDeps: {
+        force: true,
+    },
     resolve: {
         alias,
     },
@@ -23,4 +29,6 @@ export default defineConfig({
         globals: true,
         environment: "jsdom",
     },
-});
+}
+
+export default config;

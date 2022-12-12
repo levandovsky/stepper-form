@@ -17,8 +17,11 @@
         "jsx": "react-jsx",
         "paths": {
             "@utils/*": ["./src/utils/*"],
-            "@components/*": ["./src/components/*"],
-            "@form/*": ["./src/redux-form/*"]
+            "@app/*": ["./src/app/*"],
+            "@form/*": ["./src/redux-form/*"],
+            "@store/*": ["./src/app/store/*"],
+            "@styles/*": ["./src/app/styles/*"],
+            "@stepper/*": ["./src/stepper/*"]
         }
     },
     "include": ["./src"],
