@@ -1,5 +1,5 @@
 import { createForm } from "@form/form/form";
-import { required } from "@form/validators";
+import { required } from "@form/validators/default";
 
 export const companyForm = createForm("company", {
     name: {
