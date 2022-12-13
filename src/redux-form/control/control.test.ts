@@ -1,6 +1,6 @@
-import { configureStore } from "@reduxjs/toolkit";
 import { describe, expect, it } from "vitest";
-import { required } from "../validators";
+import { configureStore } from "@reduxjs/toolkit";
+import { required } from "@form/validators/default";
 import { createControl } from "./control";
 
 describe("Control", () => {
